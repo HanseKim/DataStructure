@@ -25,36 +25,42 @@ int main(){
         for(int index=0;index<s.length();index++){
             island[i][j++] = c[index++]-'0';
             if(j>=m){
-                j=0;i++;
+                j=0;
+                i=i+1;
             }
         }
     }
     //find
-    q.push(0);
-    q.push(0);
+    q.push(0); //x
+    q.push(0); //y
     while(!q.empty()){
-        int x = q.front(), y = q.front();
-        if(visited[x][y] == 0){
-            cnt++;
+        int x = q.front();
+        q.pop(); //pop x
+        int y = q.front();
+
+        if(!visited[x][y]){
             visited[x][y] = 1; 
-            if(y+1<m && island[x][y+1] == 0){
+            if(y+1<m && !island[x][y+1]){
                 q.push(x);
                 q.push(y+1);
             }
-            if(y-1>=0 && island[x][y-1] == 0){
+            if(y-1>=0 && !island[x][y-1]){
                 q.push(x);
                 q.push(y-1);
             }
-            if(x-1>=0 && island[x-1][y] == 0 ){
+            if(x-1>=0 && !island[x-1][y]){
                 q.push(x-1);
                 q.push(y);
             }
-            if(x+1<n && island[x+1][y]== 0){
+            if(x+1<n && !island[x+1][y]){
                 q.push(x+1);
                 q.push(y);
             }
+            cnt = cnt+1;
+            q.pop(); //pop y
         }
-        q.pop();
+        else
+            q.pop(); //pop y
     }
     cout<<m*n - cnt;
 }
