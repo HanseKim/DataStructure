@@ -1,7 +1,7 @@
 /**
  * @file pa06_island.cpp
  * @author SehanKim (kimbird2002@naver.com)
- * @brief find island area
+ * @brief find island area by recursion
  * @version 0.1
  * @date 2022-10-22
  * 
