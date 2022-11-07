@@ -1,7 +1,7 @@
 /**
  * @file pa08_degkins.cpp
  * @author SehanKim (kimbird2002@naver.com)
- * @brief 
+ * @brief      
  * @version 0.1
  * @date 2022-11-02
  * 
