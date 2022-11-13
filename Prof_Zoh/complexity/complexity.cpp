@@ -7,40 +7,14 @@ string fun;
 void input(){
     string str;
     int index=0;
-    while(1){
-        getline(cin,str);
-        if(str.find("main")!=string::npos)break;
-        index=0;
-        while((index = str.find("{",index)) != string::npos ){
-            fun.append("{");
-            index+=1;
-        }
-        index=0;
-        while((index = str.find("}",index)) != string::npos ){
-            fun.append("}");
-            index+=1;
-        }
-    }
-    index=0;
-    int left=0,right=0;
-    while((index = str.find("{",index)) != string::npos ){
-        fun.append("{");
-        index+=1;left++;
-    }
-    do{
+    while(!cin.eof()){
         getline(cin,str);
         index=0;
-        while((index = str.find("{",index)) != string::npos ){
-            fun.append("{");
-            index+=1;left++;
-        }
-        index=0;
-        while((index = str.find("}",index)) != string::npos ){
-            fun.append("}");
-            index+=1;right++;
+        for(char & it: str){
+            if(it=='{') fun.append("{");
+            if(it=='}') fun.append("}");
         }
     }
-    while(left!=right);
 }
 
 int complexity(){
