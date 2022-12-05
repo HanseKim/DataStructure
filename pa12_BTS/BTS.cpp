@@ -1,13 +1,3 @@
-/**
- * @file pa12_BTS.cpp
- * @author sehankim (kimbird2002@naver.com)
- * @brief 
- * @version 0.1
- * @date 2022-12-01
- * 
- * @copyright Copyright (c) 2022
- * 
- */
 #include<bits/stdc++.h>
 #define L for(auto it=m.begin();it!=m.end();it++)
 #define fir it->second.first
@@ -17,12 +7,6 @@
 using namespace std;
 map<string,pair<string,string>> m;
 int n; string root;
-/**
- * @brief Plus Node (insert)
- * 
- * @param p parent
- * @param s insert string
- */
 void pn(string p, string s){
     if(p.compare(s) > 0){
         if(MF(p)==""){
@@ -36,12 +20,6 @@ void pn(string p, string s){
         }else pn(MS(p),s);
     }
 }
-/**
- * @brief Change Node (s <-> d)
- * 
- * @param s string
- * @param d dst
- */
 void cn(string s, string d){
     L{if(fir == s) fir = d;
     else if(sec == s) sec = d;
@@ -52,41 +30,19 @@ void cn(string s, string d){
     m[s] = m[d];
     m[d] = p;
 }
-/**
- * @brief Find Max string
- * 
- * @param s start node
- * @return string : Max string
- */
 string fmax(string s){
     while(MS(s)!="") s = MS(s);
     return s;
 }
-/**
- * @brief Left SubTree
- * 
- * @param s delete string
- */
 void l_(string s){
     if(MF(s)=="") return;
     cn(s,fmax(MF(s)));
     if(MF(s)!=""||MS(s)!="") l_(s);
 }
-/**
- * @brief Find Min string
- * 
- * @param s start node
- * @return string : min string
- */
 string fmin(string s){
     while(MF(s)!="") s = MF(s);
     return s;
 }
-/**
- * @brief Right SubTree
- * 
- * @param s 
- */
 void r_(string s){
     if(MS(s)=="") return;
     cn(s,fmin(MS(s)));
@@ -96,7 +52,6 @@ int main(){
     cin>>n;
     while(n--){
         string cmd; cin>>cmd;
-        //Insert
         if(cmd == "+"){
             string str; cin>>str;
             if(m.empty() || root=="") {
@@ -105,7 +60,6 @@ int main(){
             }
             else if(m.find(str)==m.end()) pn(root, str);
         }
-        //Delete
         else if(cmd == "-") {
             string str; cin>>str;
             if(m.find(str) != m.end()){ 
@@ -121,12 +75,10 @@ int main(){
                 }m.erase(m.find(str));
             }
         }
-        //Leaf
         else if(cmd == "leaf") {
             L if(fir == "" && sec == "") cout<<it->first<<" ";
             cout<<"\n";
         }
-        //Find Depth(K) Node
         else{
             int dep; cin>>dep;
             queue<string> q;
